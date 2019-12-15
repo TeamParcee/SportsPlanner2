@@ -8,6 +8,23 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import * as firebase from 'firebase';
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyDTFlAGMfPtxMzp3c6jWa96ZnBijIAYG5I",
+  authDomain: "parceesportsplanner.firebaseapp.com",
+  databaseURL: "https://parceesportsplanner.firebaseio.com",
+  projectId: "parceesportsplanner",
+  storageBucket: "parceesportsplanner.appspot.com",
+  messagingSenderId: "600934049396",
+  appId: "1:600934049396:web:530ff61c4cd26adb185321"
+};
+
+firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+
+
 
 @NgModule({
   declarations: [AppComponent],

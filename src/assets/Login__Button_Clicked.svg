@@ -1,0 +1,13 @@
+<svg id="Login__Button_Clicked" xmlns="http://www.w3.org/2000/svg" width="338" height="62" viewBox="0 0 338 62">
+  <g id="Login_Button_1" data-name="Login Button – 1">
+    <g id="Component_3_1" data-name="Component 3 – 1">
+      <g id="Rectangle_4" data-name="Rectangle 4" fill="#707070" stroke="#707070" stroke-width="1">
+        <rect width="338" height="48" stroke="none"/>
+        <rect x="0.5" y="0.5" width="337" height="47" fill="none"/>
+      </g>
+    </g>
+    <text id="Login" transform="translate(176 32)" fill="#707070" font-size="20" font-family="SegoeUI-Bold, Segoe UI" font-weight="700"><tspan x="-26.309" y="0">Login</tspan></text>
+  </g>
+  <text id="Login_" data-name="Login
+" transform="translate(162 30)" fill="#fff" font-size="20" font-family="SegoeUI-Bold, Segoe UI" font-weight="700"><tspan x="-26.309" y="0">Login</tspan><tspan x="0" y="27"></tspan></text>
+</svg>
