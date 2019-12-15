@@ -1,9 +1,9 @@
 export class Plan {
 
     constructor(
-        id: string,
-        date: string,
-        time: string,
-        activityCount: number,
+        public id: string,
+        public date: string,
+        public time: string,
+        public activityCount: number,
     ) { }
 }

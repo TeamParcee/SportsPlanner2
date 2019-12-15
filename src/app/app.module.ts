@@ -12,17 +12,18 @@ import * as firebase from 'firebase';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyDTFlAGMfPtxMzp3c6jWa96ZnBijIAYG5I",
-  authDomain: "parceesportsplanner.firebaseapp.com",
-  databaseURL: "https://parceesportsplanner.firebaseio.com",
-  projectId: "parceesportsplanner",
-  storageBucket: "parceesportsplanner.appspot.com",
-  messagingSenderId: "600934049396",
-  appId: "1:600934049396:web:530ff61c4cd26adb185321"
+  apiKey: "AIzaSyCsh5-BlQfW-hy45_JD4ATiE0ql8hBrCXs",
+  authDomain: "coachingdrilltimer.firebaseapp.com",
+  databaseURL: "https://coachingdrilltimer.firebaseio.com",
+  projectId: "coachingdrilltimer",
+  storageBucket: "coachingdrilltimer.appspot.com",
+  messagingSenderId: "24268293516",
+  appId: "1:24268293516:web:0542821ed0f75673e682a9",
+  measurementId: "G-1C9ZMHV064"
 };
-
-firebase.initializeApp(firebaseConfig);
 // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 
 
@@ -37,4 +38,4 @@ firebase.initializeApp(firebaseConfig);
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

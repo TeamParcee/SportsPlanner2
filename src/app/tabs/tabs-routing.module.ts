@@ -9,15 +9,15 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'home',
-        loadChildren: './../pages/home/home.module#HomePageModule'
+        path: 'drill-timer',
+        loadChildren: './../pages/drill-timer/drill-timer.module#DrillTimerPageModule'
       }, {
         path: 'plans',
         loadChildren: './../pages/plans/plans.module#PlansPageModule'
       },
       {
         path: '',
-        redirectTo: 'home'
+        redirectTo: 'drill-timer'
       }
     ]
   }

@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { HelperService } from './helper.service';
 import { FirebaseService } from './firebase.service';
 import { NavController } from '@ionic/angular';
+import { User } from '../classes/user';
 
 
 @Injectable({
@@ -28,8 +29,9 @@ export class UserService {
     return new Promise((resolve) => {
       firebase.auth().onAuthStateChanged(async (firebaseUser) => {
         this.firebaseUser = firebaseUser;
-        firebase.firestore().doc("/users/" + firebaseUser.uid).onSnapshot((user) => {
-          return resolve(user.data())
+        firebase.firestore().doc("/users/" + firebaseUser.uid).onSnapshot((userData: any) => {
+          let user: User = userData.data();
+          return resolve(user)
         })
       })
 
@@ -54,14 +56,9 @@ export class UserService {
 
 
 
-  createUserData(name, photoURL, uid, email) {
+  createUserData(user: User) {
     return new Promise((resolve) => {
-      this.firebaseService.setDocument("/users/" + this.firebaseUser.uid, {
-        name: name,
-        photoURL: photoURL,
-        uid: uid,
-        email: email
-      }).then(() => {
+      this.firebaseService.setDocument("/users/" + this.firebaseUser.uid, user).then(() => {
         return resolve()
       })
     })
@@ -69,10 +66,11 @@ export class UserService {
   }
 
 
-  getUserFromUid(uid) {
+  getUserFromUid(uid: string) {
     return new Promise((resolve) => {
-      return firebase.firestore().doc("/users/" + uid).get().then((userSnap) => {
-        return resolve(userSnap.data())
+      return firebase.firestore().doc("/users/" + uid).get().then((userSnap: any) => {
+        let user: User = userSnap.data();
+        return resolve(user)
       })
     })
   }

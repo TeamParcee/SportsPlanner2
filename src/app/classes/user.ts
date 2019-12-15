@@ -1,13 +1,9 @@
 export class User {
     constructor(
-        fname: string,
-        lname: string,
-        uid: string,
-        email: string,
-        lastLogon: string,
-        isHeadCoch: boolean,
-        sport: string,
-        coachPassword: string,
-        coachUid: string,
+        public fname: string,
+        public lname: string,
+        public uid: string,
+        public email: string,
+        public lastLogon: string,
     ) { }
 }

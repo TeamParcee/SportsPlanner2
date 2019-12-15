@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/plans"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label>Practice Date</ion-label>
+        <ion-datetime></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Practice Time</ion-label>
+        <ion-datetime></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Template (Optional)</ion-label>
+        <ion-select>
+          <ion-select-option>No Template</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="save()">Save</ion-button>
+  </form>
+</ion-content>
