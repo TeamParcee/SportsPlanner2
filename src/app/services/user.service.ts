@@ -27,7 +27,7 @@ export class UserService {
 
   getUser = () => {
     return new Promise((resolve) => {
-      firebase.auth().onAuthStateChanged(async (firebaseUser) => {
+      return firebase.auth().onAuthStateChanged(async (firebaseUser) => {
         this.firebaseUser = firebaseUser;
         firebase.firestore().doc("/users/" + firebaseUser.uid).onSnapshot((userData: any) => {
           let user: User = userData.data();

@@ -37,9 +37,10 @@ export class RegisterPage implements OnInit {
 
   createAccount() {
     let form = this.registerForm.value;
-    let user = new User(form.fname, form.lname, "", form.email,  "../../assets/images/default-user.png", form.isHeadCoach, "", "", "");
+    let currentTime = moment.tz('America/Chicago').format('MMMM Do YYYY, h:mm:ss a');
+    let photoURL = "../../assets/images/default-user.png";
+    let user = new User(form.fname, form.lname, "", form.email, currentTime, photoURL);
     this.authService.createUserWitEmail(form.email, form.password).then((firebaseUser: firebase.User) => {
-      let coach = (user.isHeadCoach) ? firebaseUser.uid : null;
       user.uid = firebaseUser.uid;
       this.firebaseService.setDocument("/users/" + firebaseUser.uid, { ...user }).then(() => {
         this.navCtrl.navigateForward("/confirm-email");

@@ -1,9 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>confirm-email</ion-title>
+    <ion-title>Confirm Email</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="signout()" expand="full">Sign Out</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center sizeMd="4" pushMd="4">
+        <h5>A confirmation email has been sent to {{ user?.email }}</h5>
+        <ion-button fill="clear" (click)="getNewEmail()" expand="full">Change Email</ion-button>
+        <ion-button fill="clear" (click)="resendVerification()" expand="full">Resend Email Verficiation</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>

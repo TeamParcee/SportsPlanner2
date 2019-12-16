@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Plans</ion-title>
+    <ion-title>Practice Plans</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/add-plan">Add Plan</ion-button>
     </ion-buttons>
@@ -9,34 +9,27 @@
 
 <ion-content>
 
+  <ion-text *ngIf="plans && plans?.length == 0" class="ion-text-center">
+    <h5>You don't have any plans <br>
+      <ion-button routerLink="/add-plan" fill="clear">Create One</ion-button>
+    </h5>
+  </ion-text>
 
   <ion-list>
     <ion-list-header>December</ion-list-header>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
-    <ion-list-header>January</ion-list-header>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Fri, Dec 25th 7:00 PM</ion-label>
-    </ion-item>
+    <ion-item-sliding *ngFor="let plan of plans">
+      <ion-item [routerLink]="['/plan', plan.id]" detail>
+        <ion-label>
+          {{ plan.date + " " +  plan.startTime }}
+          <p>Activities: {{ plan.activityCount }} </p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="delete(plan)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+
   </ion-list>
 
 </ion-content>
