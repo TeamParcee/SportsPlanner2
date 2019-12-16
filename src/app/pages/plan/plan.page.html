@@ -9,6 +9,20 @@
 
 <ion-content>
 
-  <ion-button routerLink="/add-activity" >Add Activity</ion-button>
-  
+  <ion-button (click)="addActivity()" >Add Activity</ion-button>
+
+  <ion-reorder-group *ngIf="plan" (ionItemReorder)="reorderItems($event)" disabled="false">
+    <ion-item 
+      *ngFor="let activity of activities">
+      <ion-label  class="ion-text-wrap" (click)="viewActivity(activity)">
+        {{ activity.name }}
+        <p> {{ activity.duration }} minutes - {{ (activity.startTime) ? activity.startTime  : "No Start Time"}}</p>
+      </ion-label>
+      <ion-buttons  slot="end">
+        <ion-button color="dark">
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-reorder-group>
 </ion-content>

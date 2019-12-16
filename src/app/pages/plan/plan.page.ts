@@ -5,6 +5,8 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/classes/user';
 import * as firebase from 'firebase';
 import { Activity } from 'src/app/classes/activity';
+import { HelperService } from 'src/app/services/helper.service';
+import { AddActivityPage } from '../add-activity/add-activity.page';
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.page.html',
@@ -16,6 +18,7 @@ export class PlanPage implements OnInit {
     private route: ActivatedRoute,
     private firebaseService: FirebaseService,
     private userService: UserService,
+    private helper: HelperService,
   ) { }
 
   ngOnInit() {
@@ -35,18 +38,18 @@ export class PlanPage implements OnInit {
     this.user = await this.userService.getUser() as User;
   }
   async getPlan() {
-    return new Promise((resolve)=>{
+    return new Promise((resolve) => {
 
       this.route.paramMap.subscribe(async (paramMap) => {
         let id = paramMap.get('id');
-        this.firebaseService.getDocument("users/" + this.user.uid + "/plans/" + id).then((plan)=>{
+        this.firebaseService.getDocument("users/" + this.user.uid + "/plans/" + id).then((plan) => {
           this.plan = plan;
           this.getActivities();
         })
       })
       return resolve()
     })
-   
+
   }
 
   async getActivities() {
@@ -60,4 +63,12 @@ export class PlanPage implements OnInit {
       })
   }
 
+
+  addActivity() {
+    this.helper.openModal(AddActivityPage, { plan: this.plan })
+  }
+
+  viewActivity(activity) {
+    this.helper.openModal(AddActivityPage, { plan: this.plan, activity: activity, edit: true })
+  }
 }

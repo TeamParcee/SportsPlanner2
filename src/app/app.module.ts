@@ -9,6 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import * as firebase from 'firebase';
+import { QuillModule } from 'ngx-quill'
+
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -30,7 +32,11 @@ firebase.analytics();
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    QuillModule.forRoot(),
+    AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
