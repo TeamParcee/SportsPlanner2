@@ -36,18 +36,20 @@ const routes: Routes = [
   {
     path: 'confirm-email',
     loadChildren: () => import('./pages/confirm-email/confirm-email.module').then( m => m.ConfirmEmailPageModule)
-  },  {
-    path: 'plan',
-    loadChildren: () => import('./pages/plan/plan.module').then( m => m.PlanPageModule)
   },
   {
-    path: 'activity',
-    loadChildren: () => import('./pages/activity/activity.module').then( m => m.ActivityPageModule)
+    path: 'plan',
+    loadChildren: () => import('./pages/plan/plan.module').then( m => m.PlanPageModule)
   },
   {
     path: 'add-activity',
     loadChildren: () => import('./pages/add-activity/add-activity.module').then( m => m.AddActivityPageModule)
   },
+  {
+    path: 'view-activity',
+    loadChildren: () => import('./pages/view-activity/view-activity.module').then( m => m.ViewActivityPageModule)
+  },
+
 
 ];
 

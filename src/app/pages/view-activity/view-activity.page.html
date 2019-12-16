@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close() ">
+        Close
+      </ion-button>
+    </ion-buttons>
+    <ion-title>View Notes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="box-shadow: none;" class="ion-no-margin" *ngIf="activity">
+    <ion-card-content color="dark">
+      <ion-label color="dark" [innerHTML]="activity?.notes">
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

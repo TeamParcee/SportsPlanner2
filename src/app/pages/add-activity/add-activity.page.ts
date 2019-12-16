@@ -17,7 +17,11 @@ export class AddActivityPage implements OnInit {
     private firebaseService: FirebaseService,
     private userService: UserService,
     private helper: HelperService,
-  ) { }
+  ) {
+    if (!this.activity) {
+      this.activity = new Activity("", "", 0, "", "", 1000)
+    }
+  }
 
   activity: Activity;
   user: User;
@@ -30,6 +34,7 @@ export class AddActivityPage implements OnInit {
 
   async ionViewWillEnter() {
     await this.getUser();
+
   }
   async getUser() {
     this.user = await this.userService.getUser() as User;
@@ -44,7 +49,7 @@ export class AddActivityPage implements OnInit {
       })
     }
 
-    if(this.edit)[
+    if (this.edit) [
       this.firebaseService.setDocument("users/" + this.user.uid + "/plans/" + this.plan.id + "/activities/" + this.activity.id, this.activity).then(() => {
         this.close();
       })

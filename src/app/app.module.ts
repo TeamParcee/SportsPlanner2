@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import * as firebase from 'firebase';
 import { QuillModule } from 'ngx-quill'
+import { AddActivityPage } from './pages/add-activity/add-activity.page';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewActivityPage } from './pages/view-activity/view-activity.page';
 
 
 // Your web app's Firebase configuration
@@ -30,11 +33,20 @@ firebase.analytics();
 
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent,
+    AddActivityPage,
+    ViewActivityPage,
+  ],
+  entryComponents: [
+    AddActivityPage,
+    ViewActivityPage,
+  ],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
     QuillModule.forRoot(),
     AppRoutingModule],
   providers: [
