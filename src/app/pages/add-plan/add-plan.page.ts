@@ -6,6 +6,8 @@ import { User } from 'src/app/classes/user';
 import { PlansService } from 'src/app/services/plans.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { NavController } from '@ionic/angular';
+import * as moment from 'moment';
+import { TimerService } from 'src/app/services/timer.service';
 
 @Component({
   selector: 'app-add-plan',
@@ -17,14 +19,15 @@ export class AddPlanPage implements OnInit {
   constructor(
     private userService: UserService,
     private planService: PlansService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private timerService: TimerService,
   ) { }
 
   ngOnInit() {
   }
 
 
-  plan: Plan = new Plan("", null, null, 0);
+  plan: Plan = new Plan("", null, 0);
   user: User;
   errorTime;
   errorDate;
@@ -39,6 +42,8 @@ export class AddPlanPage implements OnInit {
   save() {
 
     if (this.isFormCorrect()) {
+      this.plan.datetime = moment(this.plan.isoDatetime).format('llll');
+      this.plan.timestamp = this.timerService.getTimeStamp(this.plan.isoDatetime)
       this.planService.addPlan(this.user, this.plan).then(() => {
         this.navCtrl.back()
       })
@@ -48,13 +53,13 @@ export class AddPlanPage implements OnInit {
 
 
   isFormCorrect() {
-    if (!this.plan.date) {
+    if (!this.plan.isoDatetime) {
       this.errorDate = true;
       return false;
     } else {
       this.errorDate = false;
     }
-    if (!this.plan.startTime) {
+    if (!this.plan.isoDatetime) {
       this.errorTime = true;
       return false;
     } else {

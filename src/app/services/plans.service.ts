@@ -22,9 +22,6 @@ export class PlansService {
   addPlan(user: User, plan: Plan) {
 
     return new Promise((resolve) => {
-      plan.date = moment(plan.date).format('ddd, ll');
-      plan.startTime = moment(plan.startTime).format('LT');
-
       this.firebaseService.addDocument("users/" + user.uid + "/plans", plan).then(() => {
         return resolve();
       })
@@ -41,8 +38,6 @@ export class PlansService {
   }
 
   editPlan(user: User, plan: Plan) {
-    plan.date = moment(plan.date).format('ll');
-    plan.startTime = moment(plan.startTime).format('LT');
 
     return new Promise((resolve) => {
       this.firebaseService.setDocument("/users/" + user.uid + "/plans/" + plan.id, plan).then(() => {

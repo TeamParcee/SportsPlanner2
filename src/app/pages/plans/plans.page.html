@@ -20,7 +20,7 @@
     <ion-item-sliding *ngFor="let plan of plans">
       <ion-item [routerLink]="['/plan', plan.id]" detail>
         <ion-label>
-          {{ plan.date + " " +  plan.startTime }}
+          {{ plan.datetime }}
           <p>Activities: {{ plan.activityCount }} </p>
         </ion-label>
       </ion-item>

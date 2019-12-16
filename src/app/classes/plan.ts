@@ -2,8 +2,9 @@ export class Plan {
 
     constructor(
         public id: string,
-        public date: string,
-        public startTime: string,
+        public datetime: string,
         public activityCount: number,
+        public isoDatetime?: string,
+        public timestamp?: number,
     ) { }
 }

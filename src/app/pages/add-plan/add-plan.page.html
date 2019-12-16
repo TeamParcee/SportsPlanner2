@@ -10,29 +10,19 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label>Practice Date </ion-label>
-      <ion-datetime [(ngModel)]="plan.date"></ion-datetime>
+      <ion-label position="stacked">Practice Date & Time </ion-label>
+      <ion-datetime pickerFormat="MMM DD YYYY h:m A" displayFormat="MMM DD, YYYY h:m A" [(ngModel)]="plan.isoDatetime">
+      </ion-datetime>
     </ion-item>
     <ion-item *ngIf="errorDate" lines="none">
       <ion-label>
         <ion-text color="danger">
-          <p>Please enter the date of your Practice</p>
+          <p>Please enter the date & time of your Practice</p>
         </ion-text>
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Practice Time</ion-label>
-      <ion-datetime [(ngModel)]="plan.startTime"></ion-datetime>
-    </ion-item>
-    <ion-item *ngIf="errorTime" lines="none">
-      <ion-label>
-        <ion-text color="danger">
-          <p>Please enter the time of your Practice</p>
-        </ion-text>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Template (Optional)</ion-label>
+      <ion-label  position="stacked">Template (Optional)</ion-label>
       <ion-select>
         <ion-select-option>No Template</ion-select-option>
       </ion-select>
