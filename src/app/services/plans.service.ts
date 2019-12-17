@@ -18,7 +18,7 @@ export class PlansService {
   ) { }
 
 
-
+  activities;
   addPlan(user: User, plan: Plan) {
 
     return new Promise((resolve) => {
@@ -51,7 +51,7 @@ export class PlansService {
 
     let observable = Observable.create(observer => firebase.firestore()
       .collection("/users/" + user.uid + "/plans/" + plan.id + "/activities")
-      .onSnapshot(observer)
+      .get(observer)
     );
     observable.subscribe({
       next(value) { console.log('value', value); }

@@ -42,8 +42,12 @@ export class AddPlanPage implements OnInit {
   save() {
 
     if (this.isFormCorrect()) {
+      this.plan.endTime = moment(this.plan.isoDatetime).format('LT');
+      this.plan.isoEndTime = this.plan.isoDatetime;
+      this.plan.date = moment(this.plan.isoDatetime).format('ddd, MMM DD, YYYY');
       this.plan.datetime = moment(this.plan.isoDatetime).format('llll');
-      this.plan.timestamp = this.timerService.getTimeStamp(this.plan.isoDatetime)
+      this.plan.timestamp = this.timerService.getTimeStamp(this.plan.isoDatetime);
+      this.plan.endTimestamp = this.plan.timestamp;
       this.planService.addPlan(this.user, this.plan).then(() => {
         this.navCtrl.back()
       })

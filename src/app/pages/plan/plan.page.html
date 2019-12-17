@@ -8,7 +8,15 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list-header *ngIf="plan">
+    <ion-datetime style="color: #3880ff" (ionChange)="updateTime()" pickerFormat="MMM DD, hh:mm A"
+      displayFormat="DDD, MMM DD, h:mm A" [(ngModel)]="plan.isoDatetime" fill="clear">
+    </ion-datetime>
+  </ion-list-header>
+  
+  <ion-text>
+    <h5>End Time: {{ this.endTime }}</h5>
+  </ion-text>
   <ion-button (click)="addActivity()">Add Activity</ion-button>
 
   <ion-reorder-group *ngIf="plan" (ionItemReorder)="reorderItems($event)" disabled="false">

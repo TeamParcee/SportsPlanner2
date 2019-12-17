@@ -13,50 +13,34 @@
 
 <ion-content>
 
-  <ion-card>
+  <ion-card style="background: white;" *ngIf="showTimer" (click)="viewCurrentActivity(currentActivity)">
     <ion-card-header>
-      <ion-card-subtitle>Tackling Drill</ion-card-subtitle>
-      <ion-card-title>
-        8:37
+
+      <ion-card-subtitle>
+        {{ (currentActivity?.name) ? currentActivity?.name : "Getting Next Activity..." }}
+        <ion-spinner *ngIf="!currentActivity"></ion-spinner>
+      </ion-card-subtitle>
+      <ion-card-title> {{  currentActivity?.time }}
       </ion-card-title>
     </ion-card-header>
+    <ion-card-content>
+
+
+      <ion-label>
+        <p>Next Activity: <b>{{ nextActivity?.name }} </b></p>
+        <p> Start Time: <b>{{ nextActivity?.startTime }}</b></p>
+
+      </ion-label>
+
+    </ion-card-content>
+
   </ion-card>
 
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let activity of activities">
       <ion-label class="active-drill">
-        <h2>Warm Up</h2>
-        <p>10 Minutes - 6:00 PM</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <h2>Warm Up</h2>
-        <p>10 Minutes - 6:00 PM</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <h2>Warm Up</h2>
-        <p>10 Minutes - 6:00 PM</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <h2>Warm Up</h2>
-        <p>10 Minutes - 6:00 PM</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <h2>Warm Up</h2>
-        <p>10 Minutes - 6:00 PM</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <h2>Warm Up</h2>
-        <p>10 Minutes - 6:00 PM</p>
+        <h2> {{ activity.name }}</h2>
+        <p> {{ activity.duration }} Minutes - {{ activity.startTime }} </p>
       </ion-label>
     </ion-item>
   </ion-list>

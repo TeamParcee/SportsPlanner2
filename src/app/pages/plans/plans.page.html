@@ -18,8 +18,8 @@
   <ion-list>
     <ion-list-header>December</ion-list-header>
     <ion-item-sliding *ngFor="let plan of plans">
-      <ion-item [routerLink]="['/plan', plan.id]" detail>
-        <ion-label>
+      <ion-item detail>
+        <ion-label [routerLink]="['/plan', plan.id]">
           {{ plan.datetime }}
           <p>Activities: {{ plan.activityCount }} </p>
         </ion-label>

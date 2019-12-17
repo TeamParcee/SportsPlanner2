@@ -9,6 +9,8 @@ import { HelperService } from 'src/app/services/helper.service';
 import { AddActivityPage } from '../add-activity/add-activity.page';
 import { ViewActivityPage } from '../view-activity/view-activity.page';
 import * as moment from 'moment';
+import { TimerService } from 'src/app/services/timer.service';
+import { PlansService } from 'src/app/services/plans.service';
 
 
 @Component({
@@ -23,6 +25,8 @@ export class PlanPage implements OnInit {
     private firebaseService: FirebaseService,
     private userService: UserService,
     private helper: HelperService,
+    private timerService: TimerService,
+    private plansService: PlansService,
   ) { }
 
   ngOnInit() {
@@ -61,31 +65,35 @@ export class PlanPage implements OnInit {
   }
 
   async getActivities() {
-    console.log("hey");
     firebase.firestore().collection("/users/" + this.user.uid + "/plans/" + this.plan.id + "/activities")
       .orderBy("order")
-      .onSnapshot((activitySnap) => {
+      .get().then((activitySnap) => {
         this.totalTime = 0;
         let activities = [];
         this.orderArray = [];
-        let time = moment(this.plan.date).format("LT");
+        let time = moment(this.plan.datetime).format("LT");
         let minutes = 0;
         let count = 0;
         activitySnap.forEach((activity) => {
           count = count + 1;
           let a = activity.data();
           a.startTime = this.getTimeOfEvent(time, minutes);
-          a.date = moment(this.date).format("MMM DD, YYYY ") + a.startTime;
           activities.push(a);
           this.orderArray.push({ order: count, id: a.id });
           time = a.startTime;
           minutes = a.duration;
           this.totalTime = this.totalTime + (minutes * 1);
           this.endTime = this.getTimeOfEvent(time, minutes);
+          activity.ref.update({ startTime: time });
         })
+        if (this.endTime) {
+          this.updateEndTime();
+        }
         this.activities = activities;
-        this.date = this.plan.date;
       })
+
+
+
   }
 
 
@@ -126,8 +134,30 @@ export class PlanPage implements OnInit {
     })
   }
 
+
+ 
   getTimeOfEvent(time, minutes) {
     let x = moment(time, "hh:mm a").add('minutes', minutes).format('LT');
     return x;
+  }
+
+  updateTime() {
+    let time = {
+      date: moment(this.plan.isoDatetime).format('ddd, MMM DD, YYYY'),
+      isoDatetime: this.plan.isoDatetime,
+      datetime: moment(this.plan.isoDatetime).format('llll'),
+      timestamp: this.timerService.getTimeStamp(this.plan.isoDatetime)
+    }
+
+
+    this.firebaseService.updateDocument("/users/" + this.user.uid + "/plans/" + this.plan.id, time);
+    this.getPlan();
+  }
+
+  updateEndTime(){
+    let isoEndTime = moment(this.plan.date + " " + this.endTime, "ddd, MMM DD, YYYY, h:m A").format();
+    this.firebaseService.
+    updateDocument("/users/" + this.user.uid + "/plans/" + this.plan.id, { endTime: this.endTime, isoEndTime: isoEndTime, endTimestamp: this.timerService.getTimeStamp(isoEndTime) })
+
   }
 }

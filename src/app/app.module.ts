@@ -13,6 +13,10 @@ import { QuillModule } from 'ngx-quill'
 import { AddActivityPage } from './pages/add-activity/add-activity.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewActivityPage } from './pages/view-activity/view-activity.page';
+import { Media } from '@ionic-native/media/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 
 // Your web app's Firebase configuration
@@ -51,6 +55,10 @@ firebase.analytics();
     AppRoutingModule],
   providers: [
     StatusBar,
+    Media,
+    LocalNotifications,
+    BackgroundMode,
+    Vibration,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

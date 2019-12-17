@@ -45,6 +45,7 @@ export class AddActivityPage implements OnInit {
     }
     if (!this.edit) {
       this.firebaseService.addDocument("users/" + this.user.uid + "/plans/" + this.plan.id + "/activities", this.activity).then(() => {
+        this.firebaseService.updateDocument("users/" + this.user.uid + "/plans/" + this.plan.id, { activityCount: (this.plan.activityCount + 1) })
         this.close();
       })
     }
@@ -75,5 +76,18 @@ export class AddActivityPage implements OnInit {
   }
   close() {
     this.helper.closeModal()
+  }
+
+  delete() {
+    this.helper.confirmationAlert("Delete Activity", "Are you sure you want to delete this activity?", { denyText: "Cancel", confirmText: "Delete" })
+      .then((result) => {
+        if (result) {
+          this.firebaseService.deleteDocument("users/" + this.user.uid + "/plans/" + this.plan.id + "/activities/" + this.activity.id)
+            .then(() => {
+              this.firebaseService.updateDocument("users/" + this.user.uid + "/plans/" + this.plan.id, { activityCount: (this.plan.activityCount - 1) })
+              this.close();
+            })
+        }
+      })
   }
 }

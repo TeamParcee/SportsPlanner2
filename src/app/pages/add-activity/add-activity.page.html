@@ -5,7 +5,10 @@
         Close
       </ion-button>
     </ion-buttons>
-    <ion-title>Add Activity</ion-title>
+    <ion-title>{{ (edit) ? "Edit" : "Add" }} Activity</ion-title>
+    <ion-buttons *ngIf="edit" slot="end">
+      <ion-button color="danger" (click)="delete()">Delete</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
