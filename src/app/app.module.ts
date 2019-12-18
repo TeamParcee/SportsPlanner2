@@ -33,6 +33,8 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+const messaging = firebase.messaging();
+messaging.usePublicVapidKey("BJvtPdOD0boEU9EuLT1HMeZjLAIB5MJnCduh8bnH9enymAVHiMGVGDWjtzwqumyNluygKAMpBpCJJcEhUplc9Z0");
 
 
 
